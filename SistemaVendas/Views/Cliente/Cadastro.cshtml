@@ -1,0 +1,72 @@
+﻿@model SistemaVendas.Models.ClienteViewModel
+@{
+    ViewData["Title"] = "Cadastro";
+
+    var disabled = (Model.Codigo == null) ? "disabled" : "";
+}
+
+<h1>Cadastro</h1>
+
+<form asp-controller="Cliente" asp-action="Cadastro" method="post">
+
+    <div class="form-group">
+        <div class="col-4">
+            <label>Nome</label>
+            <input type="text" class="form-control" asp-for="Nome" value="@Model.Nome" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-4">
+            <label>CNPJ/CPF</label>
+            <input type="text" class="form-control" asp-for="CNPJ_CPF" value="@Model.CNPJ_CPF" />
+            <span asp-validation-for="CNPJ_CPF" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-4">
+            <label>Email</label>
+            <input type="text" class="form-control" asp-for="Email" value="@Model.Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-4">
+            <label>Celular</label>
+            <input type="text" class="form-control" asp-for="Celular" value="@Model.Celular" />
+            <span asp-validation-for="Celular" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <br />
+    <div class="col">
+        <button type="button" class="btn btn-info" onclick="Novo()">Novo</button>
+        <button type="submit" class="btn btn-success">Gravar</button>
+        <button type="button" class="btn btn-info" onclick="Listagem()">Listagem</button>
+        <button type="button" class="btn btn-danger" @disabled onclick="Excluir(@Model.Codigo)">Excluir</button>
+    </div>
+
+
+    <input type="hidden" asp-for="Codigo" value="@Model.Codigo" />
+</form>
+
+<script>
+    function Cadastrar(codigo) {
+        window.location = window.origin + "\\Cliente\\Cadastro\\" + codigo;
+    }
+
+    function Novo() {
+        window.location = window.origin + "\\Cliente\\Cadastro";
+    }
+
+    function Listagem() {
+        window.location = window.origin + "\\Cliente";
+    }
+
+    function Excluir(codigo) {
+        window.location = window.origin + "\\Cliente\\Excluir\\" + codigo;
+    }
+
+
+</script>
